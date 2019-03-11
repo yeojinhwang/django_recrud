@@ -1,6 +1,6 @@
 {% extends 'boards/base.html' %}
 {% block body %}
-    <form action="/boards/create/" method="POST">
+    <form action="{% url 'create' %}" method="POST">
         {% csrf_token %}
         title : <input type="text" name="title">
         content : <textarea name="content"></textarea>

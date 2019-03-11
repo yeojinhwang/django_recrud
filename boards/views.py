@@ -15,7 +15,7 @@ def create(request):
     board.title = request.POST.get('title')
     board.content = request.POST.get('content')
     board.save()
-    return redirect('/boards')
+    return redirect('index')
     
 def edit(request, pk):
     board = Board.objects.get(pk=pk)
@@ -26,9 +26,9 @@ def update(request, pk):
     board.title = request.POST.get('title')
     board.content = request.POST.get('content')
     board.save()
-    return redirect('/boards')
+    return redirect('index')
 
 def delete(request, pk):
     board = Board.objects.get(pk=pk)
     board.delete()
-    return redirect('/boards')
+    return redirect('index')
