@@ -1,0 +1,13 @@
+{% extends 'boards/base.html' %}
+{% block body %}
+    {% for board in contents %}
+        <h1>{{ board.title }}</h1>
+        등록일 : <b>{{ board.created_at }}</b>
+        수정일 : <b>{{ board.updated_at }}</b>
+        <p>{{ board.content }}</p>
+        <a href="/boards/edit/{{ board.pk }}">수정</a>
+        <a href="/boards/delete/{{ board.pk }}">삭제</a>
+        <hr>
+    {% endfor %}
+    <a href="/boards/new/">등록하기</a>
+{% endblock %}
