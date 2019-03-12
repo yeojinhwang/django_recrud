@@ -4,10 +4,10 @@ from . import views
 app_name = 'boards'
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    path('', views.index, name='index'), # boards:index
     path('new/', views.new, name='new'),
-    path('create/', views.create, name='create'),
+    # path('create/', views.create, name='create'),
     path('edit/<int:pk>/', views.edit, name='edit'),
-    path('update/<int:pk>/', views.update, name='update'),
+    # path('update/<int:pk>/', views.update, name='update'),
     path('delete/<int:pk>', views.delete, name='delete'),
 ]
