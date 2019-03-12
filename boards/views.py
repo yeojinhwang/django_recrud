@@ -79,5 +79,9 @@ def comments_create(request, board_pk):
     comment.save()
     return redirect('boards:detail', comment.board_id)
     
-
+def comments_delete(request, board_pk, comment_pk):
+    if request.method == 'POST':
+        comment = Comment.objects.get(pk=comment_pk)
+        comment.delete()
+    return redirect('boards:detail', comment.board_id)
     

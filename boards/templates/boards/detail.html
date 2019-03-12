@@ -19,5 +19,9 @@
 </form>
 {% for comment in comments %}
     <li>{{ comment.content }}</li>
+    <form action="{% url 'boards:comments_delete' board.pk comment.pk %}" method="POST" style="display: inline" onsubmit="return confirm('삭제할거야?')">
+        {% csrf_token %}
+        <input type="submit" value="삭제">
+    </form>
 {% endfor %}
 {% endblock %}
