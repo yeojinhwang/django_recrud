@@ -1,6 +1,6 @@
 import pprint
 from django.shortcuts import render, HttpResponse, redirect
-from .models import Board
+from .models import Board, Comment
 
 # Create your views here.
 
@@ -17,8 +17,8 @@ def index(request):
     contents = Board.objects.order_by('-id')
     return render(request, 'boards/index.html', {'contents': contents})
     
-def detail(request, pk):
-    board = Board.objects.get(pk=pk)
+def detail(request, board_pk):
+    board = Board.objects.get(pk=board_pk)
     comments = board.comment_set.all()
     context = {
         'board': board,
@@ -43,9 +43,9 @@ def new(request):
 #     board.save()
 #     return redirect('boards:index')
     
-def edit(request, pk):
+def edit(request, board_pk):
     if request.method == 'POST':
-        board = Board.objects.get(pk=pk)
+        board = Board.objects.get(pk=board_pk)
         board.title = request.POST.get('title')
         board.content = request.POST.get('content')
         board.save()
@@ -61,10 +61,23 @@ def edit(request, pk):
 #     board.save()
 #     return redirect('boards:index')
 
-def delete(request, pk):
-    board = Board.objects.get(pk=pk)
+def delete(request, board_pk):
+    board = Board.objects.get(pk=board_pk)
     if request.method == "POST":
         board.delete()
         return redirect('boards:index')
     else:
         return redirect('boards:index')
+        
+def comments_create(request, board_pk):
+    # 1. 댓글 달 게시물을 가져온다.
+    board = Board.objects.get(pk=board_pk)
+    # 2. 댓글을 저장한다.
+    comment = Comment()
+    comment.content = request.POST.get('content')
+    comment.board = board
+    comment.save()
+    return redirect('boards:detail', comment.board_id)
+    
+
+    

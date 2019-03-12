@@ -6,9 +6,10 @@ app_name = 'boards'
 urlpatterns = [
     path('', views.index, name='index'), # boards:index
     path('new/', views.new, name='new'),
-    path('<int:pk>/', views.detail, name='detail'),
+    path('<int:board_pk>/', views.detail, name='detail'),
     # path('create/', views.create, name='create'),
-    path('edit/<int:pk>/', views.edit, name='edit'),
+    path('edit/<int:board_pk>/', views.edit, name='edit'),
     # path('update/<int:pk>/', views.update, name='update'),
-    path('delete/<int:pk>', views.delete, name='delete'),
+    path('delete/<int:board_pk>', views.delete, name='delete'),
+    path('<int:board_pk>/comments/', views.comments_create, name='comments_create'),
 ]
