@@ -1,4 +1,17 @@
-{% extends 'base.html' %}
+{% extends 'boards/base.html' %}
 {% block body %}
+<h1>{{ board.id }}번글</h1>
+<hr>
+<h2>{{ board.title }}</h2>
+<p>{{ board.content }}</p>
 <a href="{% url 'boards:index' %}">목록보기</a>
+<form action="{% url 'boards:delete' board.pk %}" method="POST" style="display: inline" onsubmit="return confirm('삭제할거야?')">
+    {% csrf_token %}
+    <input type="submit" value="삭제">
+</form>
+<a href="{% url 'boards:edit' board.pk %}">수정</a>
+<hr>
+{% for comment in comments %}
+    <li>{{ comment.content }}</li>
+{% endfor %}
 {% endblock %}

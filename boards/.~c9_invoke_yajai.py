@@ -17,15 +17,6 @@ def index(request):
     contents = Board.objects.order_by('-id')
     return render(request, 'boards/index.html', {'contents': contents})
     
-def detail(request, pk):
-    board = Board.objects.get(pk=pk)
-    comments = board.comment_set.all()
-    context = {
-        'board': board,
-        'comments': comments
-    }
-    return render(request, 'boards/detail.html', context)
-    
 def new(request):
     if request.method == 'POST':
         board = Board()

@@ -3,9 +3,7 @@
     {% for board in contents %}
         <h3>{{ board.pk }}번째 글</h3>
         <h1>{{ board.title }}</h1>
-        등록일 : <b>{{ board.created_at }}</b>
-        수정일 : <b>{{ board.updated_at }}</b>
-        <p>{{ board.content }}</p>
+        <a href="{% url 'boards:detail' board.pk %}">글 보기</a>
         <form action="{% url 'boards:delete' board.pk %}" method="POST" style="display: inline" onsubmit="return confirm('삭제할거야?')">
             {% csrf_token %}
             <input type="submit" value="삭제">
