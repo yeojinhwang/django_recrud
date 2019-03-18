@@ -1,5 +1,7 @@
 {% extends 'boards/base.html' %}
+{% load static %}
 {% block body %}
+<img src="{% static 'iu.jpg' %}">
     {% for board in contents %}
         <h3>{{ board.pk }}번째 글</h3>
         <h1>{{ board.title }}</h1>
