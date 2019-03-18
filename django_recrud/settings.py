@@ -123,5 +123,8 @@ STATIC_URL = '/static/'
 # 기본으로 INSTALLED_APPS 아래 있는 static 디렉토리를 탐색
 # 추가적인 디렉토리를 활용하려면 아래와 같이 작성(임의 디렉토리 추가)
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'assets')    
+    os.path.join(BASE_DIR, 'assets')
 ]
+# media files(사용자가 업로드한 이미지 파일)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

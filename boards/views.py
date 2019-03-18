@@ -31,6 +31,7 @@ def new(request):
         board = Board()
         board.title = request.POST.get('title')
         board.content = request.POST.get('content')
+        board.image = request.FILES.get('image')
         board.save()
         return redirect('boards:index')
     else:

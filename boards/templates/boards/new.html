@@ -1,9 +1,13 @@
 {% extends 'boards/base.html' %}
 {% block body %}
-    <form action="{% url 'boards:new' %}" method="POST">
+<!--file upload 를 위해서는 form에 enctype을 설정해줘야 한다.-->
+<!--기본값은 application/x-www-form-urlencoded 이다.-->
+    <form action="{% url 'boards:new' %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         title : <input type="text" name="title">
         content : <textarea name="content"></textarea>
+        <!--accept는 file 업로드시 확장자 제한을 하거나 audio, video, image 제한을 한다.-->
+        <input type="file" name="image" accept="image/*"><br>
         <input type="submit" value="제출">
     </form>
 {% endblock %}

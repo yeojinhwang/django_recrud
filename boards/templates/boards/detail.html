@@ -2,6 +2,7 @@
 {% block body %}
 <h1>{{ board.id }}번글</h1>
 <hr>
+<img src="{{board.image.url}}">
 <h2>{{ board.title }}</h2>
 <p>{{ board.content }}</p>
 <a href="{% url 'boards:index' %}">목록보기</a>
